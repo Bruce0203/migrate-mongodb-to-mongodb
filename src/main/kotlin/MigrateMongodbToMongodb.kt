@@ -23,7 +23,7 @@ fun migrate(oldName: String, newName: String) {
                 try {
                     newCol.insertOne(it)
                 } catch(e: Exception) {
-                    e.stackTraceToString().apply { errors.add(this) }
+                    e.stackTraceToString().apply { errors.add(it.toString() + this) }
                 }
             }
         }
