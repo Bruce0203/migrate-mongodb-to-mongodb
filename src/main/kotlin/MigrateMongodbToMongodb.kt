@@ -26,7 +26,7 @@ fun migrate(oldName: String, newName: String) {
                     val oldCol = oldDB.getCollection(colName)
                     oldCol.find().forEach {
                             i++
-                            if (i < lastI) {
+                            if (i <= lastI) {
                                 return@forEach
                             } else if (i >= refreshPeriod) {
                                 lastI += i
