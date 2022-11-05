@@ -43,6 +43,11 @@ allprojects {
 
     lateinit var sourcesArtifact: PublishArtifact
 
+    val jar by tasks.getting(Jar::class) {
+        manifest {
+            attributes["Main-Class"] = "MainKt"
+        }
+    }
 
     tasks {
         artifacts {
