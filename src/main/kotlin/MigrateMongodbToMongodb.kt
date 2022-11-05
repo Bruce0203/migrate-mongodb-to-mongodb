@@ -14,7 +14,7 @@ fun migrate(oldName: String, newName: String) {
     val newClient = MongoClients.create(newName)
     val oldClient = MongoClients.create(oldName)
     var i = 0
-    var lastI = refreshPeriod
+    var lastI = 0
     while(true) {
         try {
             oldClient.listDatabaseNames().forEach { dbName ->
@@ -27,7 +27,7 @@ fun migrate(oldName: String, newName: String) {
                     oldCol.find().forEach {
                         try {
                             i++
-                            if (i <= lastI) {
+                            if (i < lastI) {
                                 return@forEach
                             } else if (i >= refreshPeriod) {
                                 lastI += i
