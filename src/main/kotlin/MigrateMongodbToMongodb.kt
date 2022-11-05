@@ -25,7 +25,6 @@ fun migrate(oldName: String, newName: String) {
                     val newCol = newDB.getCollection(colName)
                     val oldCol = oldDB.getCollection(colName)
                     oldCol.find().forEach {
-                        println(it)
                         try {
                             i++
                             if (i <= lastI) {
@@ -34,6 +33,7 @@ fun migrate(oldName: String, newName: String) {
                                 lastI += i
                                 i = 0
                             }
+                            println(it)
                             newCol.insertOne(it)
                         } catch(e: Exception) {
                             e.stackTraceToString().apply { errors.add(it.toString() + this) }
