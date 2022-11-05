@@ -16,6 +16,7 @@ fun migrate(oldName: String, newName: String) {
         val newDB = newClient.getDatabase(dbName)
         val oldDB = oldClient.getDatabase(dbName)
         oldDB.listCollectionNames().forEach { colName ->
+            newDB.createCollection(colName)
             val newCol = newDB.getCollection(colName)
             val oldCol = oldDB.getCollection(colName)
             oldCol.find().forEach {
