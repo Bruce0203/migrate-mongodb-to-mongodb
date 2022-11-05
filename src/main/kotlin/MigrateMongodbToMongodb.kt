@@ -18,8 +18,8 @@ fun migrate(oldName: String, newName: String) {
             val newCol = newDB.getCollection(colName)
             val oldCol = oldDB.getCollection(colName)
             oldCol.find().forEach {
-                newCol.insertOne(it)
                 println(it)
+                newCol.insertOne(it)
             }
         }
     }
