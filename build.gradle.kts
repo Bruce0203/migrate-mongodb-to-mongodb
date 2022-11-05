@@ -45,7 +45,7 @@ allprojects {
 
     val jar by tasks.getting(Jar::class) {
         manifest {
-            attributes["Main-Class"] = "MainKt"
+            attributes["Main-Class"] = "MigrateMongodbToMongodbKt"
         }
     }
 
