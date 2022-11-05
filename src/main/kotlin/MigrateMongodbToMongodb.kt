@@ -1,5 +1,3 @@
-package kotlinexample
-
 import com.mongodb.client.MongoClients
 import java.io.File
 import java.util.Properties
