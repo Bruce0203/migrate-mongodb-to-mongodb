@@ -10,7 +10,7 @@ fun main() {
 
 fun migrate(oldName: String, newName: String) {
     val errors = ArrayList<String>()
-    val newClient = MongoClients.create(newName)
+    var newClient = MongoClients.create(newName)
     val oldClient = MongoClients.create(oldName)
     oldClient.listDatabaseNames().forEach { dbName ->
         val newDB = newClient.getDatabase(dbName)
@@ -24,6 +24,7 @@ fun migrate(oldName: String, newName: String) {
                 try {
                     newCol.insertOne(it)
                 } catch(e: Exception) {
+                    newClient = MongoClients.create(newName)
                     e.stackTraceToString().apply { errors.add(it.toString() + this) }
                 }
             }
