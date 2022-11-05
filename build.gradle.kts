@@ -38,7 +38,7 @@ allprojects {
     dependencies {
 //    api(fileTree(mapOf("dir" to "libs", "include" to listOf("*.jar"))))
         compileOnly("org.spigotmc:spigot-api:1.18.2-R0.1-SNAPSHOT")
-
+        api("org.mongodb:mongodb-driver-sync:4.6.0")
     }
 
     lateinit var sourcesArtifact: PublishArtifact
