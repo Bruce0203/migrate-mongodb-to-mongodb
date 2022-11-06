@@ -29,7 +29,7 @@ fun migrate(oldName: String, newName: String) {
                             if (i <= lastI) {
                                 return@forEach
                             } else if (i >= refreshPeriod) {
-                                lastI += i
+                                lastI += --i
                                 i = 0
                                 throw AssertionError()
                             }
