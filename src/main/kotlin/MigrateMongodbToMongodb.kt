@@ -25,14 +25,17 @@ fun migrate(oldName: String, newName: String) {
                     val newCol = newDB.getCollection(colName)
                     val oldCol = oldDB.getCollection(colName)
                     oldCol.find().forEach {
+                        if (i < lastI) {
                             i++
-                            if (i <= lastI) {
-                                return@forEach
-                            } else if (i >= refreshPeriod) {
-                                lastI += --i
-                                i = 0
-                                throw AssertionError()
-                            }
+                            println("skip-1 debug: $i, $lastI, $refreshPeriod")
+                            return@forEach
+                        } else if (i >= refreshPeriod) {
+                            lastI += --i
+                            i = 0
+                            println("skip-2 debug: $i, $lastI, $refreshPeriod")
+                            throw AssertionError()
+                        }
+                        i++
                         try {
                             println(it)
                             newCol.insertOne(it)
